@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="currencyApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Currency Converter - AngularJS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="CurrencyController">
+  <a href="login.html" style="margin-left: 20px;"></a>
+
+  <div class="container">
+    <h1 style="color: white;"><b>💱<i>Currency Converter</i></b></h1>
+
+    <!-- REMOVE the second nested form and fix the action to point to dashboard.html -->
+       <form action="dashboard.html" method="POST">
+        ...
+      </form>
+
+    <div class="form-group">
+      <label style="color: white;">💵 Amount in Rupees:</label>
+      <input type="number" ng-model="amount" placeholder="Enter amount in INR" >
+    </div>
+
+    <div class="form-group">
+      <label style="color: white;">🌍 Convert to:</label>
+      <select ng-model="targetCurrency">
+        <option value="EUR">Euro (EUR)</option>
+        <option value="INR">Indian Rupee (INR)</option>
+        <option value="JPY">Japanese Yen (JPY)</option>
+        <option value="USD">United States (USD)</option>
+        <option value="CAD">Canada (CAD)</option>
+        <option value="AUD">Australian Dollar (AUD)</option>
+        <option value="CNY">Chinese Yuan Renminbi (CNY)</option>
+        <option value="RUB">Russia Ruble (RUB)</option>
+        <option value="BRL">Brazil (BRL)</option> 
+        <option value="SAR">Saudi Riyal (SAR)</option>
+        <option value="NZD">New Zealand Dollar (NZD)</option>
+        <option value="TRY">Turkey (TRY)</option>
+        <option value="NGN">Nigerian Naira (NGN)</option>
+        <option value="ZAR">South Africa (ZAR)</option>
+        <option value="SGD">Singapore (SGD)</option>
+      </select>
+      
+    </div>
+
+    <button ng-click="convert()">Convert</button>
+
+    <div style="color: black;"class="result-box" ng-if="converted">
+      <h2>Converted Amount:</h2>
+      <p>{{ amount }} Rupees = <strong>{{ result }}</strong> {{ targetCurrency }}</p>
+      
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    var app = angular.module('currencyApp', []);
+
+    app.controller('CurrencyController', function($scope) {
+      $scope.amount = 1;
+      $scope.targetCurrency = 'USD';
+      $scope.result = 0;
+      $scope.converted = false;
+
+      // INR to other currencies
+      const rates = {
+        INR: 1,
+        EUR: 0.011,
+        JPY: 1.65,
+        USD: 0.012,
+        CAD: 0.016,
+        AUD: 0.018,
+        CNY: 0.087,
+        RUB: 1.1,
+        BRL: 0.065,
+        SAR: 0.045,
+        NZD: 0.019,
+        TRY: 0.39,
+        NGN: 10.12,
+        ZAR: 0.21,
+        SGD: 0.016
+      };
+
+      $scope.convert = function() {
+        const amount = parseFloat($scope.amount);
+        const rate = rates[$scope.targetCurrency];
+
+        if (!isNaN(amount) && rate !== undefined) {
+          $scope.result = (amount * rate).toFixed(2);
+          $scope.converted = true;
+        } else {
+          $scope.result = "Invalid input or currency";
+          $scope.converted = false;
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

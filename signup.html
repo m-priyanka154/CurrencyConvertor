@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - Currency Converter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/053/312/124/small_2x/3d-relief-world-map-topography-oceans-continents-earth-photo.jpeg '); /* currency-themed image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .bg-overlay {
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+  </style>
+</head>
+<body class=" min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-lg max-w-sm w-full">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Create an Account</h2>
+
+    <form onsubmit="handleSignup(event)">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="name" name="name" required
+               class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300" />
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="email" required
+               class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300" />
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" name="password" required
+               class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300" />
+      </div>
+      <button type="submit"
+              class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition duration-300">
+        Sign Up
+      </button>
+    </form>
+
+    <p class="mt-4 text-sm text-center text-gray-600">
+      Already have an account?
+      <a href="login.html" class="text-blue-600 hover:underline">Log in</a>
+    </p>
+  </div>
+
+  <script>
+    function handleSignup(event) {
+      event.preventDefault();
+
+      // You can add localStorage or validations here if needed
+
+      // Redirect to login page
+      alert("Signup successful! Redirecting to login...");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
